@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты теста по ООП</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Результаты теста по ООП</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="test.html">Пройти снова</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="results-card">
+            <h2>Ваш результат:</h2>
+            <div class="score" id="score"></div>
+            <div class="feedback" id="feedback"></div>
+            <a href="test.html" class="start-button">Попробовать снова</a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const score = localStorage.getItem('oopTestScore');
+            const scoreElement = document.getElementById('score');
+            const feedbackElement = document.getElementById('feedback');
+            
+            if (score) {
+                scoreElement.textContent = score;
+                
+                const [correct, total] = score.split('/').map(Number);
+                const percentage = (correct / total) * 100;
+                
+                if (percentage >= 80) {
+                    feedbackElement.textContent = 'Отличный результат! Вы хорошо разбираетесь в ООП.';
+                    feedbackElement.style.color = '#27ae60';
+                } else if (percentage >= 50) {
+                    feedbackElement.textContent = 'Неплохо, но есть над чем поработать.';
+                    feedbackElement.style.color = '#f39c12';
+                } else {
+                    feedbackElement.textContent = 'Попробуйте изучить материал еще раз.';
+                    feedbackElement.style.color = '#e74c3c';
+                }
+            } else {
+                scoreElement.textContent = 'Результаты не найдены';
+            }
+        });
+    </script>
+</body>
+</html>

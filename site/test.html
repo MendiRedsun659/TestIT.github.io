@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест по ООП</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>Тест по ООП</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="test.html" class="active">Тест</a>
+        </nav>
+        <div class="timer">Время: <span id="time">30:00</span></div>
+    </header>
+
+    <main class="container">
+        <form id="oop-test">
+            <!-- Вопрос 1 -->
+            <div class="question">
+                <h3>1. Что такое инкапсуляция в ООП?</h3>
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q1" value="a">
+                        Способность объектов иметь разные формы
+                    </label>
+                    <label>
+                        <input type="radio" name="q1" value="b">
+                        Объединение данных и методов в одном классе
+                    </label>
+                    <label>
+                        <input type="radio" name="q1" value="c">
+                        Создание иерархии классов
+                    </label>
+                </div>
+            </div>
+
+            <!-- Вопрос 2 -->
+            <div class="question">
+                <h3>2. Какой принцип ООП позволяет переопределять методы в дочерних классах?</h3>
+                <div class="options">
+                    <label>
+                        <input type="radio" name="q2" value="a">
+                        Инкапсуляция
+                    </label>
+                    <label>
+                        <input type="radio" name="q2" value="b">
+                        Полиморфизм
+                    </label>
+                    <label>
+                        <input type="radio" name="q2" value="c">
+                        Наследование
+                    </label>
+                </div>
+            </div>
+
+            <!-- Добавьте больше вопросов по аналогии -->
+
+            <button type="submit" class="submit-button">Завершить тест</button>
+        </form>
+    </main>
+
+    <script src="js/test.js"></script>
+</body>
+</html>

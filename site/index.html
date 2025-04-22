@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тестирование по информационным технологиям</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .start-screen {
+            display: block;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border-radius: 5px;
+            text-align: left;
+            display: none;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #ecf0f1;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .options label:hover {
+            background: #d6eaf8;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        .start-btn {
+            background: #2ecc71;
+            font-size: 18px;
+            padding: 15px 30px;
+            margin: 30px auto;
+        }
+        .start-btn:hover {
+            background: #27ae60;
+        }
+        .result {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .correct {
+            color: #27ae60;
+        }
+        .incorrect {
+            color: #e74c3c;
+        }
+        .restart-btn {
+            background: #e67e22;
+            margin: 20px auto;
+        }
+        .restart-btn:hover {
+            background: #d35400;
+        }
+        .progress {
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Тестирование по информационным технологиям</h1>
+        
+        <!-- Начальный экран -->
+        <div class="start-screen" id="startScreen">
+            <h2>Начальный уровень</h2>
+            <p>Тест содержит 20 вопросов по следующим темам:</p>
+            <ul style="text-align: left; display: inline-block; margin: 20px auto;">
+                <li>Работа с файлами и папками</li>
+                <li>Текстовые редакторы</li>
+                <li>Создание презентаций</li>
+                <li>Основы информационных технологий</li>
+            </ul>
+            <button class="start-btn" id="startBtn">Начать тестирование</button>
+        </div>
+
+        <!-- Прогресс -->
+        <div class="progress" id="progress" style="display: none;">Вопрос 1 из 20</div>
+
+        <!-- Вопросы -->
+        <div class="question" id="q1">
+            <p>1. Верно ли утверждение: "Папка — это группа файлов, объединенная по некоторому принципу, имеющая имя."</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="a"> Верно</label>
+                <label><input type="radio" name="q1" value="b"> Неверно</label>
+            </div>
+            <div class="nav-buttons">
+                <button disabled id="prev1">Назад</button>
+                <button id="next1">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q2">
+            <p>2. Восстановите правильный порядок алгоритма создания папки:</p>
+            <div class="options">
+                <label><input type="checkbox" name="q2" value="1"> Нажать «Создать»</label>
+                <label><input type="checkbox" name="q2" value="2"> Щелкнуть правой кнопкой мыши на рабочем столе</label>
+                <label><input type="checkbox" name="q2" value="3"> Нажать «Папку»</label>
+                <label><input type="checkbox" name="q2" value="4"> Нажать клавишу Enter</label>
+                <label><input type="checkbox" name="q2" value="5"> Написать имя папки</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev2">Назад</button>
+                <button id="next2">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q3">
+            <p>3. Как правильно переименовать папку?</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="a"> Щелкнуть левой кнопкой мыши → «Переименовать»</label>
+                <label><input type="radio" name="q3" value="b"> Щелкнуть правой кнопкой мыши → «Переименовать»</label>
+                <label><input type="radio" name="q3" value="c"> Двойной щелчок по имени папки</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev3">Назад</button>
+                <button id="next3">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q4">
+            <p>4. Что такое файл?</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="a"> Программа для работы с текстом</label>
+                <label><input type="radio" name="q4" value="b"> Набор данных, имеющий имя и хранящийся в памяти компьютера</label>
+                <label><input type="radio" name="q4" value="c"> Устройство для хранения информации</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev4">Назад</button>
+                <button id="next4">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q5">
+            <p>5. Как создать текстовый файл через контекстное меню?</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="a"> Правый клик → Создать → Текстовый документ</label>
+                <label><input type="radio" name="q5" value="b"> Двойной клик на рабочем столе</label>
+                <label><input type="radio" name="q5" value="c"> Через меню Пуск</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev5">Назад</button>
+                <button id="next5">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q6">
+            <p>6. Для чего нужен текстовый редактор?</p>
+            <div class="options">
+                <label><input type="checkbox" name="q6" value="1"> Для создания и редактирования текстов</label>
+                <label><input type="checkbox" name="q6" value="2"> Для форматирования текста</label>
+                <label><input type="checkbox" name="q6" value="3"> Для программирования</label>
+                <label><input type="checkbox" name="q6" value="4"> Для работы с графикой</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev6">Назад</button>
+                <button id="next6">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q7">
+            <p>7. Какие основные функции есть в Блокноте?</p>
+            <div class="options">
+                <label><input type="checkbox" name="q7" value="1"> Создание и сохранение текстовых файлов</label>
+                <label><input type="checkbox" name="q7" value="2"> Форматирование текста (жирный, курсив)</label>
+                <label><input type="checkbox" name="q7" value="3"> Поиск по тексту</label>
+                <label><input type="checkbox" name="q7" value="4"> Вставка изображений</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev7">Назад</button>
+                <button id="next7">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q8">
+            <p>8. Как сохранить документ в текстовом редакторе?</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="a"> Файл → Сохранить</label>
+                <label><input type="radio" name="q8" value="b"> Правый клик → Сохранить</label>
+                <label><input type="radio" name="q8" value="c"> Нажать Ctrl+C</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev8">Назад</button>
+                <button id="next8">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q9">
+            <p>9. Что такое презентация?</p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="a"> Текстовый документ</label>
+                <label><input type="radio" name="q9" value="b"> Набор слайдов для демонстрации информации</label>
+                <label><input type="radio" name="q9" value="c"> Графический файл</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev9">Назад</button>
+                <button id="next9">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q10">
+            <p>10. Какие программы используются для создания презентаций?</p>
+            <div class="options">
+                <label><input type="checkbox" name="q10" value="1"> Microsoft PowerPoint</label>
+                <label><input type="checkbox" name="q10" value="2"> Google Slides</label>
+                <label><input type="checkbox" name="q10" value="3"> Яндекс.Презентации</label>
+                <label><input type="checkbox" name="q10" value="4"> Adobe Photoshop</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev10">Назад</button>
+                <button id="next10">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q11">
+            <p>11. Что такое слайд в презентации?</p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="a"> Отдельная страница презентации</label>
+                <label><input type="radio" name="q11" value="b"> Анимационный эффект</label>
+                <label><input type="radio" name="q11" value="c"> Фон презентации</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev11">Назад</button>
+                <button id="next11">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q12">
+            <p>12. Для чего нужны шаблоны в презентациях?</p>
+            <div class="options">
+                <label><input type="checkbox" name="q12" value="1"> Для быстрого оформления</label>
+                <label><input type="checkbox" name="q12" value="2"> Для единого стиля всех слайдов</label>
+                <label><input type="checkbox" name="q12" value="3"> Для экономии времени</label>
+                <label><input type="checkbox" name="q12" value="4"> Для автоматического создания содержания</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev12">Назад</button>
+                <button id="next12">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q13">
+            <p>13. Как добавить новый слайд в презентацию?</p>
+            <div class="options">
+                <label><input type="radio" name="q13" value="a"> Вкладка "Главная" → "Новый слайд"</label>
+                <label><input type="radio" name="q13" value="b"> Правый клик → Добавить слайд</label>
+                <label><input type="radio" name="q13" value="c"> Нажать Ctrl+N</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev13">Назад</button>
+                <button id="next13">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q14">
+            <p>14. Что такое информационные технологии?</p>
+            <div class="options">
+                <label><input type="radio" name="q14" value="a"> Процессы, методы поиска, сбора, хранения, обработки, предоставления информации</label>
+                <label><input type="radio" name="q14" value="b"> Компьютерные игры</label>
+                <label><input type="radio" name="q14" value="c"> Социальные сети</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev14">Назад</button>
+                <button id="next14">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q15">
+            <p>15. Какие устройства относятся к средствам ИТ?</p>
+            <div class="options">
+                <label><input type="checkbox" name="q15" value="1"> Компьютеры</label>
+                <label><input type="checkbox" name="q15" value="2"> Смартфоны</label>
+                <label><input type="checkbox" name="q15" value="3"> Принтеры</label>
+                <label><input type="checkbox" name="q15" value="4"> Микроволновые печи</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev15">Назад</button>
+                <button id="next15">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q16">
+            <p>16. Что такое операционная система?</p>
+            <div class="options">
+                <label><input type="radio" name="q16" value="a"> Программа для работы с текстами</label>
+                <label><input type="radio" name="q16" value="b"> Набор программ, управляющих работой компьютера</label>
+                <label><input type="radio" name="q16" value="c"> Устройство ввода информации</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev16">Назад</button>
+                <button id="next16">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q17">
+            <p>17. Для чего нужен антивирус?</p>
+            <div class="options">
+                <label><input type="radio" name="q17" value="a"> Для ускорения работы компьютера</label>
+                <label><input type="radio" name="q17" value="b"> Для защиты от вредоносных программ</label>
+                <label><input type="radio" name="q17" value="c"> Для создания презентаций</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev17">Назад</button>
+                <button id="next17">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q18">
+            <p>18. Что такое интернет?</p>
+            <div class="options">
+                <label><input type="radio" name="q18" value="a"> Локальная сеть</label>
+                <label><input type="radio" name="q18" value="b"> Глобальная система объединенных компьютерных сетей</label>
+                <label><input type="radio" name="q18" value="c"> Программа для просмотра сайтов</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev18">Назад</button>
+                <button id="next18">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q19">
+            <p>19. Какие браузеры вы знаете?</p>
+            <div class="options">
+                <label><input type="checkbox" name="q19" value="1"> Google Chrome</label>
+                <label><input type="checkbox" name="q19" value="2"> Mozilla Firefox</label>
+                <label><input type="checkbox" name="q19" value="3"> Microsoft Edge</label>
+                <label><input type="checkbox" name="q19" value="4"> Adobe Reader</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev19">Назад</button>
+                <button id="next19">Далее</button>
+            </div>
+        </div>
+
+        <div class="question" id="q20">
+            <p>20. Как безопасно работать в интернете?</p>
+            <div class="options">
+                <label><input type="checkbox" name="q20" value="1"> Не открывать подозрительные ссылки</label>
+                <label><input type="checkbox" name="q20" value="2"> Использовать надежные пароли</label>
+                <label><input type="checkbox" name="q20" value="3"> Устанавливать обновления безопасности</label>
+                <label><input type="checkbox" name="q20" value="4"> Сообщать личные данные незнакомцам</label>
+            </div>
+            <div class="nav-buttons">
+                <button id="prev20">Назад</button>
+                <button id="finish">Завершить тест</button>
+            </div>
+        </div>
+
+        <div id="testResult" class="result"></div>
+        <button id="restart" class="restart-btn" style="display: none;">Попробовать еще раз</button>
+    </div>
+
+    <script>
+        // Все вопросы с правильными ответами
+        const questions = [
+            { id: "q1", type: "radio", answer: "a" },
+            { id: "q2", type: "checkbox", answer: ["2", "1", "3", "5", "4"] },
+            { id: "q3", type: "radio", answer: "b" },
+            { id: "q4", type: "radio", answer: "b" },
+            { id: "q5", type: "radio", answer: "a" },
+            { id: "q6", type: "checkbox", answer: ["1", "2", "3"] },
+            { id: "q7", type: "checkbox", answer: ["1", "3"] },
+            { id: "q8", type: "radio", answer: "a" },
+            { id: "q9", type: "radio", answer: "b" },
+            { id: "q10", type: "checkbox", answer: ["1", "2", "3"] },
+            { id: "q11", type: "radio", answer: "a" },
+            { id: "q12", type: "checkbox", answer: ["1", "2", "3"] },
+            { id: "q13", type: "radio", answer: "a" },
+            { id: "q14", type: "radio", answer: "a" },
+            { id: "q15", type: "checkbox", answer: ["1", "2", "3"] },
+            { id: "q16", type: "radio", answer: "b" },
+            { id: "q17", type: "radio", answer: "b" },
+            { id: "q18", type: "radio", answer: "b" },
+            { id: "q19", type: "checkbox", answer: ["1", "2", "3"] },
+            { id: "q20", type: "checkbox", answer: ["1", "2", "3"] }
+        ];
+
+        // Начать тест
+        document.getElementById('startBtn').addEventListener('click', function() {
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('progress').style.display = 'block';
+            document.getElementById('q1').style.display = 'block';
+        });
+
+        // Навигация по вопросам
+        for (let i = 1; i <= 20; i++) {
+            // Кнопка "Далее"
+            if (i < 20) {
+                document.getElementById(`next${i}`).addEventListener('click', function() {
+                    document.getElementById(`q${i}`).style.display = 'none';
+                    document.getElementById(`q${i+1}`).style.display = 'block';
+                    updateProgress(i+1);
+                });
+            }
+            
+            // Кнопка "Назад"
+            if (i > 1) {
+                document.getElementById(`prev${i}`).addEventListener('click', function() {
+                    document.getElementById(`q${i}`).style.display = 'none';
+                    document.getElementById(`q${i-1}`).style.display = 'block';
+                    updateProgress(i-1);
+                });
+            }
+        }
+
+        // Обновление прогресса
+        function updateProgress(currentQuestion) {
+            document.getElementById('progress').textContent = `Вопрос ${currentQuestion} из 20`;
+        }
+
+        // Завершение теста
+        document.getElementById('finish').addEventListener('click', finishTest);
+
+        function finishTest() {
+            let score = 0;
+            questions.forEach(question => {
+                const selectedOptions = getSelectedOptions(question.id);
+                
+                if (Array.isArray(question.answer)) {
+                    if (arraysEqual(selectedOptions, question.answer)) {
+                        score++;
+                    }
+                } else {
+                    if (selectedOptions[0] === question.answer) {
+                        score++;
+                    }
+                }
+            });
+
+            // Скрыть все вопросы
+            document.querySelectorAll('.question').forEach(q => {
+                q.style.display = 'none';
+            });
+
+            // Показать результат
+            const percentage = Math.round((score / questions.length) * 100);
+            const resultElement = document.getElementById('testResult');
+            resultElement.style.display = 'block';
+            resultElement.textContent = `Ваш результат: ${score} из ${questions.length} (${percentage}%)`;
+            
+            if (percentage >= 70) {
+                resultElement.className = 'result correct';
+                resultElement.textContent += ' - Отличный результат!';
+            } else {
+                resultElement.className = 'result incorrect';
+                resultElement.textContent += ' - Попробуйте еще раз!';
+            }
+
+            // Показать кнопку "Попробовать еще раз"
+            document.getElementById('restart').style.display = 'block';
+            document.getElementById('progress').style.display = 'none';
+        }
+
+        // Кнопка "Попробовать еще раз"
+        document.getElementById('restart').addEventListener('click', function() {
+            // Сброс всех ответов
+            document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
+                input.checked = false;
+            });
+
+            // Скрыть результат
+            document.getElementById('testResult').style.display = 'none';
+            this.style.display = 'none';
+
+            // Вернуться к первому вопросу
+            document.querySelectorAll('.question').forEach(q => {
+                q.style.display = 'none';
+            });
+            document.getElementById('q1').style.display = 'block';
+            document.getElementById('progress').style.display = 'block';
+            document.getElementById('progress').textContent = 'Вопрос 1 из 20';
+        });
+
+        // Вспомогательные функции
+        function getSelectedOptions(questionName) {
+            const inputs = document.querySelectorAll(`input[name="${questionName}"]:checked`);
+            const selected = [];
+            
+            inputs.forEach(input => {
+                selected.push(input.value);
+            });
+            
+            return selected;
+        }
+
+        function arraysEqual(a, b) {
+            if (a.length !== b.length) return false;
+            
+            for (let i = 0; i < a.length; i++) {
+                if (a[i] !== b[i]) return false;
+            }
+            
+            return true;
+        }
+    </script>
+</body>
+</html>
